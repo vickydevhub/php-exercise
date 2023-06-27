@@ -1,64 +1,49 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## PHP Exercise - v21.0.2
+In this exercise you need to create a PHP application that will have a form with the following fields:
+● Company Symbol
+● Start Date (YYYY-mm-dd)
+● End Date (YYYY-mm-dd)
+● Email
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## The available options for the Company Symbol field can be found here:
 
-## About Laravel
+https://pkgstore.datahub.io/core/nasdaq-listings/nasdaq-listed_json/data/a5bc7580d6176d60ac0
+b2142ca8d7df6/nasdaq-listed_json.json
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## After the form submission, the following actions must be done:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 1) Validate the form both on the client and server side and display the appropriate messages on
+both cases. Validation rules:
+● Company Symbol: required, a valid symbol
+● Start Date: required, valid date, less or equal than End Date, less or equal than current
+date
+● End Date: required, valid date, greater or equal than Start Date, less or equal than
+current date
+● Email: required, valid email
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 2) Display on screen the historical quotes for the submitted Company Symbol in the given date
+range in table format. Table columns:
+Date | Open | High | Low | Close | Volume
+Historical data should be retrieved using the API’s endpoint 'stock/v3/get-historical-data' which
+is documented here: https://rapidapi.com/apidojo/api/yh-finance
+## NOTE: Historical data service requires the token X-RapidAPI-Key which is provided in the same
+email with this document.
 
-## Learning Laravel
+## 3) Based on the Historical data retrieved, display on screen a chart of the Open and Close prices.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 4) Send to the submitted Email an email message, using as:
+● Subject: the submitted company’s name
+○ i.e. for submitted Company Symbol = GOOG => Company’s Name = Google
+● Body: Start Date and End Date
+○ i.e. From 2020-01-01 to 2020-01-31
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Notes
+● The exercise can be developed using plain PHP, but PHP framework (Symfony, Laravel
+etc) is preferred
+● Tests are a mandatory part of the exercise
+● In case no PHP framework is used, the email must be sent using the Swift Mailer:
+https://github.com/swiftmailer/swiftmailer
+Or Symfony Mailer: https://github.com/symfony/mailer
+● The user must enter Start Date and End Date using jQuery UI datepicker or any other
+plugin/component with similar functionality: http://jqueryui.com/datepicker/
